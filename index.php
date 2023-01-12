@@ -47,8 +47,7 @@
 			$newFileName = date("Y.m.d") . " - " . date("h.i.sa") . "." . $fileExtension;
 
 			$targetDirectory = "uploads/" . $newFileName;
-			$wtf = move_uploaded_file($_FILES['excel']['tmp_name'], $targetDirectory);
-			echo $wtf;
+			move_uploaded_file($_FILES['excel']['tmp_name'], $targetDirectory);
 			error_reporting(0);
 			ini_set('display_errors', 0);
 
