@@ -31,9 +31,7 @@
 						<form action="" method="POST" enctype="multipart/form-data">
 
 							<input type="file" name="excel" class="form-control" value="" required/>
-							<div class="text-center">
-								<button type="submit" name="import" class="btn btn-primary mt-3">Import</button>
-							</div>
+							<button type="submit" name="import" class="btn btn-primary mt-3">Import</button>
 
 						</form>
 
