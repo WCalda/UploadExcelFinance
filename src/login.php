@@ -38,7 +38,7 @@
             <div class="card bg-dark mb-3 w-40">
                 <div class="card-body text-center m-0">
 
-                    <form action="MAIN.PHP" method="POST">
+                    <form action="login.php" method="POST">
                         <div class="text-center m-1">
                             <input class="text-center rounded" type="text" name="ridercode" placeholder="Rider Code">
                         </div>
@@ -61,11 +61,15 @@
                         $result = mysqli_query($conn, $query);
                 
                         if (mysqli_num_rows($result) == 1) {
-                            $_SESSION['username'] = $username;
+                            $_SESSION['ridercode'] = $username;
                             header('location: main.php');
+                            echo $username;
+                            echo $password;
+                            
                         } else {
                             echo "Incorrect username or password";
                         }
+
                     }
                     
                     ?>
