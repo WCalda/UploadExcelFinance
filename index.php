@@ -15,7 +15,7 @@
     <title>RMI Project</title>
 </head>
 <body>
-	<div class="bg-image" style="background-image: url('src/rmi-bg.png'); height: 100vh; background-repeat: no-repeat; background-position: 40% center;">
+	<div class="bg-image" style="background-image: url('src/rmi-bg.png'); height: 100vh; background-repeat: no-repeat; background-position: center;">
 	<div class="card-header">
 		<h4>RMI Project</h4>
 	</div>
@@ -59,7 +59,8 @@
 			foreach($reader as $key => $row){
 				$ptname = $row[0];
 				$issuedate = $row[1];
-				mysqli_query($conn, "INSERT INTO partners VALUES('', '$ptname', '$issuedate')");
+				$amount = $row[2];
+				mysqli_query($conn, "INSERT INTO partners VALUES('', '$ptname', '$issuedate', '$amount')");
 			}
 
 			echo
