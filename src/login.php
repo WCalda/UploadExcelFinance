@@ -1,18 +1,19 @@
 <?php
 
-    require 'configuration.php';
+    session_start();
 
-    // Check Connection
-    /*
-    if(mysqli_connect_errno()){
-        echo "Connection Error";
-    } else {
-        echo "Good Connection";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "financeproj";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    */
+
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -36,16 +37,39 @@
         <div class="col d-flex justify-content-center">
             <div class="card bg-dark mb-3 w-40">
                 <div class="card-body text-center m-0">
-                    <div class="text-center m-1">
-                        <input class="text-center rounded" type="text" placeholder="Rider Code">
-                    </div>
-                    <div class="text-center m-1">
-                        <input class="text-center rounded" type="text" placeholder="Password">
-                    </div>
 
-                    <div class="card-body text-center">
-                        <button type="button" class="btn bg-light border-dark text-center">Sign In</button>
-                    </div>      
+                    <form action="MAIN.PHP" method="POST">
+                        <div class="text-center m-1">
+                            <input class="text-center rounded" type="text" name="ridercode" placeholder="Rider Code">
+                        </div>
+                        <div class="text-center m-1">
+                            <input class="text-center rounded" type="text" name="password" placeholder="Password">
+                        </div>
+                        
+                        <div class="card-body text-center">
+                            <button type="submit" name="login" class="btn bg-light border-dark text-center">Sign In</button>
+                        </div>
+                    </form>
+                    
+                    <?php
+                    
+                    if (isset($_POST['login'])) {
+                        $username = $_POST['ridercode'];
+                        $password = $_POST['password'];
+                
+                        $query = "SELECT * FROM partnercode WHERE IDCode='$username' AND password='$password'";
+                        $result = mysqli_query($conn, $query);
+                
+                        if (mysqli_num_rows($result) == 1) {
+                            $_SESSION['username'] = $username;
+                            header('location: main.php');
+                        } else {
+                            echo "Incorrect username or password";
+                        }
+                    }
+                    
+                    ?>
+
                 </div>
             </div>
         </div>
