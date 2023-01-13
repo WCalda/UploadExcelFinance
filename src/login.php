@@ -37,10 +37,10 @@
             <div class="card bg-dark mb-3 w-40">
                 <div class="card-body text-center m-0">
                     <div class="text-center m-1">
-                        <input class="text-center" type="text" placeholder="Rider Code">
-                        </div>
-                        <div class="text-center m-1">
-                        <input class="text-center" type="text" placeholder="Password">
+                        <input class="text-center rounded" type="text" placeholder="Rider Code">
+                    </div>
+                    <div class="text-center m-1">
+                        <input class="text-center rounded" type="text" placeholder="Password">
                     </div>
 
                     <div class="card-body text-center">
