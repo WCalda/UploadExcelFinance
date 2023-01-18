@@ -27,16 +27,9 @@
 
     ?>
         <div class="table-responsive">
-            <table class="table mx-auto">
-                <tr>
-                    <td class="text-right"><button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button></td>
-                </tr>
-                <script>
-                    function redirectToPage() {
-                        window.location.replace('./ApplicationMobile.php');
-                    }
-                </script>
-            </table>
+            <div class="table-responsive">
+                <h3 class="text-center">William Calda</h3>
+            </div>
             <table class="table mx-auto">
                 <tr>
                     <form>
@@ -52,17 +45,15 @@
                 </tr> 
             </table>
             <table class="table mx-auto">
-                <tr>
-                    <th>IDCode</th>
-                    <th>Partners Name</th>
-                    <th>Password</th>
+                <tr class="text-center">
+                    <th>Credit Date</th>
+                    <th>Amount</th>
                 </tr>
                 <?php 
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo 
-                            "<tr>
-                                <td>" . $row["IDCode"]. "</td>
+                            "<tr class=\"text-center\">
                                 <td>" . $row["DateIssued"]. " </td>
                                 <td>" . $row["Amount"]. "</td>
                             </tr>";
@@ -72,9 +63,24 @@
                     }
                 ?>
             </table>
-            <div class="text-center">
-                <button type="button" class="btn btn-dark">Add Data</button>
+            <div>
+                <table class="table mx-auto">
+                    <tr>
+                        <td class="text-right fw-bold">Sum</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                </table>
             </div>
+            <table class="table mx-auto">
+                <tr>
+                    <td class="text-center"><button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button></td>
+                </tr>
+                <script>
+                    function redirectToPage() {
+                        window.location.replace('./ApplicationMobile.php');
+                    }
+                </script>
+            </table>
         </div>
     </div>
 </body>
