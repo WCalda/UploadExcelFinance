@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="App.js" type="module" defer></script>
+    <script src="App."></script>
     <title>Rider</title>
 </head>
 <body style="background-color: #F5F5DC;">
@@ -31,6 +31,11 @@
                 <tr>
                     <td class="text-right"><button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button></td>
                 </tr>
+                <script>
+                    function redirectToPage() {
+                        window.location.replace('./ApplicationMobile.php');
+                    }
+                </script>
             </table>
             <table class="table mx-auto">
                 <tr>
