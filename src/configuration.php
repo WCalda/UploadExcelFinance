@@ -1,6 +1,13 @@
 <?php
+    //For Local
+    session_start();
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "financeproj";
 
     //Setup Connection
-    $conn = mysqli_connect("localhost", "root", "", "financeproj");
+    $conn = new mysqli($servername, $username, $password, $dbname);
     
 ?>
