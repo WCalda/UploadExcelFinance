@@ -17,7 +17,7 @@
     <script src="App.js" type="module" defer></script>
     <title>Login</title>
 </head>
-<body style="background-color: #F5F5DC;">
+<body style="background-color: #FFF;">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
             <form class="text-center" action="" method="POST">
             <img src="../src/XSpeedLogo.png" style="width: 200px; height: 200px" class="img-fluid rounded mx-auto d-block" alt="Yea">
@@ -32,24 +32,26 @@
                 <button type="submit" name="login" class="btn btn-primary">Login</button>
             </form>
             <?php 
-            if (isset($_POST['login'])) {
-                $username = $_POST['ridercode'];
-                $password = $_POST['password'];
-        
-                $query = "SELECT * FROM riders WHERE IDCode='$username' AND RPassword='$password'";
-                $result = mysqli_query($conn, $query);
-        
-                if (mysqli_num_rows($result) == 1) {
-                    header('Location: RidersPage.php'); 
-                } else {
-                    echo
-                    "
-                    <script>
-                        hiddenerrorcode();
-                    </script>
-                    ";
-                }
-            }   
+            session_start();
+                if (isset($_POST['login'])) {
+                    $username = $_POST['ridercode'];
+                    $password = $_POST['password'];
+                    $query = "SELECT * FROM riders WHERE IDCode='$username' AND RPassword='$password'";
+                    $result = mysqli_query($conn, $query);
+            
+                    if (mysqli_num_rows($result) == 1) {
+                        $ptdata = "SELECT PartnerName FROM riders WHERE IDCode='$username' AND RPassword='$password'";
+                        $newresult = mysqli_query($conn, $ptdata);
+                        $row = mysqli_fetch_assoc($newresult);
+                        $partner_name = $row["PartnerName"];
+                        $_SESSION['RidersName'] = $partner_name;
+                        header('Location: RidersPage.php'); 
+                    } else {
+                        echo
+                        " Invalid Username or Password ";
+                    }
+                }   
+            mysqli_close($conn);
             ?>
     </div>
 </body>

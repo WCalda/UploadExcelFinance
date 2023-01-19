@@ -18,27 +18,34 @@
     <script src="App."></script>
     <title>Rider</title>
 </head>
-<body style="background-color: #F5F5DC;">
+<body style="background-color: #FFF;">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
     <?php 
-
-        $sql = "SELECT * FROM partners";
+        session_start();
+        $RiderName = $_SESSION['RidersName'];
+        $sql = "SELECT * FROM datarider"; // WHERE RiderName=$RiderName
         $result = $conn->query($sql);
-
+        
     ?>
+    <header style="background-image: var(--bs-gradient);" class="text-wrap fixed-top bg-primary text-light d-flex justify-content-center ">
+        <h1 class="mt-2">
+            <?php 
+                
+                echo $RiderName;
+
+            ?>
+        </h1>
+    </header>
         <div class="table-responsive">
-            <div class="table-responsive">
-                <h3 class="text-center">William Calda</h3>
-            </div>
             <table class="table mx-auto">
                 <tr>
                     <form>
                         <td>
-                            <label for="start_date">From Date:</label>
-                                <input type="date" class="form-control d-block mb-3" id="fromdate" name="start_date" min="2023-01-01" max="2023-12-31" value="2023-01-01">
+                            <label for="start_date" class="mt-5">From Date:</label>
+                            <input type="date" class="form-control d-block mb-3" id="fromdate" name="start_date" min="2023-01-01" max="2023-12-31" value="2023-01-01">
                         </td>
                         <td>
-                        <label for="start_date">To Date:</label>
+                            <label for="start_date" class="mt-5">To Date:</label>
                             <input type="date" class="form-control d-block mb-3" id="todate" name="start_date" min="2023-01-01" max="2023-12-31" value="2023-01-01">
                         </td>
                     </form>
@@ -54,11 +61,14 @@
                         while($row = $result->fetch_assoc()) {
                             echo 
                             "<tr class=\"text-center\">
-                                <td>" . $row["DateIssued"]. " </td>
-                                <td>" . $row["Amount"]. "</td>
+                                <td>" . $row["CreditDate"]. " </td>
+                                <td>" . $row["AmountIssued"]. "</td>
                             </tr>";
                         }
                     } else {
+                        if(!$result){
+                            die("Query failed: " . mysqli_error($conn));
+                        }
                         echo "0 results";
                     }
                 ?>
@@ -71,15 +81,15 @@
                     </tr>
                 </table>
             </div>
-            <table class="table mx-auto">
-                <tr>
-                    <td class="text-center"><button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button></td>
-                </tr>
+
+            <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
+                <button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button>
                 <script>
                     function redirectToPage() {
                         window.location.replace('./ApplicationMobile.php');
                     }
                 </script>
+            </footer>   
             </table>
         </div>
     </div>
