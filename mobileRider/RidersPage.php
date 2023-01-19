@@ -20,24 +20,25 @@
 </head>
 <body style="background-color: #FFF;">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
-    <?php 
-        session_start();
-        $RiderName = $_SESSION['RidersName'];
-        $sql = "SELECT * FROM datarider"; // WHERE RiderName=$RiderName
-        $result = $conn->query($sql);
-        
-    ?>
-    <header style="background-image: var(--bs-gradient);" class="text-wrap fixed-top bg-primary text-light d-flex justify-content-center ">
-        <h1 class="mt-2">
-            <?php 
-                
-                echo $RiderName;
+        <?php 
+            session_start();
+            $RiderName = $_SESSION['RidersName'];
+            $sql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
+            $result = $conn->query($sql);
+            
+        ?>
+        <header style="background-image: var(--bs-gradient);" class="text-wrap fixed-top bg-primary text-light d-flex justify-content-center ">
+            <h1 class="mt-2">
+                <?php 
+                    
+                    echo $RiderName;
 
-            ?>
-        </h1>
-    </header>
+                ?>
+            </h1>
+        </header>
+
         <div class="table-responsive">
-            <table class="table mx-auto">
+            <table class="mx-auto">
                 <tr>
                     <form>
                         <td>
@@ -49,12 +50,16 @@
                             <input type="date" class="form-control d-block mb-3" id="todate" name="start_date" min="2023-01-01" max="2023-12-31" value="2023-01-01">
                         </td>
                     </form>
-                </tr> 
+                </tr>
             </table>
+        </div>
+        
+
+        <div class="table-responsive" style="width: 300px;">
             <table class="table mx-auto">
                 <tr class="text-center">
-                    <th>Credit Date</th>
-                    <th>Amount</th>
+                    <th class="table-dark">Credit Date</th>
+                    <th class="table-dark">Amount</th>
                 </tr>
                 <?php 
                     if ($result->num_rows > 0) {
@@ -72,27 +77,31 @@
                         echo "0 results";
                     }
                 ?>
-            </table>
-            <div>
-                <table class="table mx-auto">
-                    <tr>
-                        <td class="text-right fw-bold">Sum</td>
-                        <td class="text-center">0</td>
-                    </tr>
-                </table>
-            </div>
+                <tr >
+                    <td class="text-right table-info fw-bold">Sum</td>
+                    <td class="text-center table-info">
+                    <?php 
+                        $nresult = $conn->query($sql);
+                        $ntotal = 0;
+                        while($row = $nresult->fetch_assoc()) {
+                            $ntotal += $row['AmountIssued'];
+                        }
 
-            <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
-                <button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button>
-                <script>
-                    function redirectToPage() {
-                        window.location.replace('./ApplicationMobile.php');
-                    }
-                </script>
-            </footer>   
+                        echo $ntotal;
+                    ?>
+                    </td>
+                </tr>
             </table>
         </div>
-    </div>
+        <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
+            <button type="button" onclick="redirectToPage()" class="btn btn-dark">Logout</button>
+            <script>
+                function redirectToPage() {
+                    window.location.replace('./ApplicationMobile.php');
+                }
+            </script>
+        </footer> 
+    </div>  
 </body>
 </html>
 
