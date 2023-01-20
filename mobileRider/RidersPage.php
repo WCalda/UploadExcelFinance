@@ -19,20 +19,16 @@
     <title>Rider</title>
 </head>
 <body style="background-color: #FFF;">
+    <header class="text-wrap fixed-top bg-primary text-light d-flex justify-content-center ">
+        <h1 class="mt-2">
+            <?php 
+                session_start();
+                $RiderName = $_SESSION['RidersName'];   
+                echo $RiderName;
+            ?>
+        </h1>
+    </header>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
-        <?php 
-            session_start();
-            $RiderName = $_SESSION['RidersName'];   
-        ?>
-        <header class="text-wrap fixed-top bg-primary text-light d-flex justify-content-center ">
-            <h1 class="mt-2">
-                <?php 
-                    
-                    echo $RiderName;
-
-                ?>
-            </h1>
-        </header>
         
         <div class="table-responsive" style="width: 300px;">
             <table class="mx-auto">
@@ -49,18 +45,16 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center">
-                            <button type="submit" class="mb-2 btn btn-dark" onClick="hidedata()">Generate</button>
+                            <button type="submit" class="mb-2 btn btn-primary">Generate</button>
                         </td>
                         <?php
                             
                         if(isset($_GET['fromdate']) && isset($_GET['todate'])){
                             $fromdate = $_GET['fromdate'];
                             $todate = $_GET['todate'];
-    
                             $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName' AND CreditDate BETWEEN '$fromdate' AND '$todate'";
-                            
                             $datequery = $conn->query($dsql);
-                            
+            
                         ?>
                     </tr>
                 </form>
@@ -90,7 +84,6 @@
                         <th>Amount</th>
                     </tr>
                 <?php
-                    
                     $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
                     $result = $conn->query($dsql);
                     if ($result->num_rows > 0) {
@@ -123,7 +116,8 @@
                 </tr>
             </table>
         </div>
-        <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
+    </div>  
+    <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
             <button type="button" onclick="redirectToPage()" class="btn w-75 btn-primary">Logout</button>
             <script>
                 function redirectToPage() {
@@ -131,7 +125,6 @@
                 }
             </script>
         </footer> 
-    </div>  
 </body>
 </html>
 
