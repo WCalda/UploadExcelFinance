@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <input type="password" class="form-control text-center mb-2" id="password" name="password" placeholder="Password">
                 </div>
-                <button type="submit" name="login" class="btn btn-primary">Login</button>
+                <button type="submit" name="login" class="mt-3 w-100 btn btn-primary">Login</button>
             </form>
             <?php 
             session_start();

@@ -65,7 +65,7 @@
 					$issuedate = $row[1];
 					$amount = $row[2];
 					
-					mysqli_query($conn, "INSERT INTO partners VALUES('', '$ptname', '$issuedate', '$amount')");
+					mysqli_query($conn, "INSERT INTO datarider VALUES('', '$ptname', '$issuedate', '$amount')");
 				}
 
 				echo
