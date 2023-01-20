@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="App."></script>
+    <script src="App.js" type="module" defer></script>
     <title>Rider</title>
 </head>
 <body style="background-color: #FFF;">
@@ -23,8 +23,8 @@
         <?php 
             session_start();
             $RiderName = $_SESSION['RidersName'];
-            $sql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
-            $result = $conn->query($sql);
+            // $sql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
+            // $result = $conn->query($sql);
             
         ?>
         <header style="background-image: var(--bs-gradient);" class="text-wrap fixed-top bg-primary text-light d-flex justify-content-center ">
@@ -36,32 +36,83 @@
                 ?>
             </h1>
         </header>
-
-        <div class="table-responsive">
+        
+        <div class="table-responsive" style="width: 300px;">
             <table class="mx-auto">
-                <tr>
-                    <form>
+                <form action="" method="GET">
+                    <tr>
                         <td>
                             <label for="start_date" class="mt-5">From Date:</label>
-                            <input type="date" class="form-control d-block mb-3" id="fromdate" name="start_date" min="2023-01-01" max="2023-12-31" value="2023-01-01">
+                            <input type="date" class="form-control d-block mb-2" id="fromdate" name="fromdate" min="2022-01-01" max="2023-12-31" value="2022-01-01">
                         </td>
                         <td>
                             <label for="start_date" class="mt-5">To Date:</label>
-                            <input type="date" class="form-control d-block mb-3" id="todate" name="start_date" min="2023-01-01" max="2023-12-31" value="2023-01-01">
+                            <input type="date" class="form-control d-block mb-2" id="todate" name="todate" min="2022-01-01" max="2023-12-31" value="2022-01-01">
                         </td>
-                    </form>
-                </tr>
-            </table>
-        </div>
-        
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <button type="submit" class="mb-2 btn btn-dark" onClick="hidedata()">Generate</button>
+                        </td>
+                        <?php
+                            
+                        if(isset($_GET['fromdate']) && isset($_GET['todate'])){
+                            $fromdate = $_GET['fromdate'];
+                            $todate = $_GET['todate'];
+    
+                            $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName' AND CreditDate BETWEEN '$fromdate' AND '$todate'";
+                            
+                            $datequery = $conn->query($dsql);
 
-        <div class="table-responsive" style="width: 300px;">
+                            // $sql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
+                            // $datequery = mysqli_query($conn, $dsql);
+
+                            // $sql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
+                            // $result = $conn->query($sql);
+                            // if ($result->num_rows > 0) {
+                            //     while($row = $result->fetch_assoc()) {
+                            //         echo 
+                            //         "<tr class=\"text-center\">
+                            //             <td>" . $row["CreditDate"]. " </td>
+                            //             <td>" . $row["AmountIssued"]. "</td>
+                            //         </tr>";
+                            //     }
+                            // } else if(!$result){
+                            //     die("Query failed: " . mysqli_error($conn));
+                            // }
+                            
+                        ?>
+                    </tr>
+                </form>
+            </table>
             <table class="table mx-auto">
                 <tr class="text-center">
                     <th class="table-dark">Credit Date</th>
                     <th class="table-dark">Amount</th>
                 </tr>
-                <?php 
+                <?php
+                    if($datequery->num_rows > 0){
+                        while($row = $datequery->fetch_assoc()){
+                            echo
+                                "<tr class=\"text-center\">
+                                    <td>" . $row["CreditDate"]. " </td>
+                                    <td>" . $row["AmountIssued"]. "</td>
+                                </tr>";
+                        }
+                    } else{
+                        echo "<td colspan=\"2\"> No Result Found </td>";
+                    }
+                } else {
+                ?>
+                <table class="table mx-auto">
+                    <tr class="text-center">
+                        <th class="table-dark">Credit Date</th>
+                        <th class="table-dark">Amount</th>
+                    </tr>
+                <?php
+                    
+                    $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
+                    $result = $conn->query($dsql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo 
@@ -70,22 +121,22 @@
                                 <td>" . $row["AmountIssued"]. "</td>
                             </tr>";
                         }
-                    } else {
-                        if(!$result){
-                            die("Query failed: " . mysqli_error($conn));
-                        }
-                        echo "0 results";
+                    } else if(!$result){
+                        die("Query failed: " . mysqli_error($conn));
                     }
+                }
                 ?>
-                <tr >
+                <tr>
                     <td class="text-right table-info fw-bold">Sum</td>
                     <td class="text-center table-info">
                     <?php 
-                        $nresult = $conn->query($sql);
+
+                        $nresult = $conn->query($dsql);
                         $ntotal = 0;
                         while($row = $nresult->fetch_assoc()) {
                             $ntotal += $row['AmountIssued'];
                         }
+
 
                         echo $ntotal;
                     ?>
