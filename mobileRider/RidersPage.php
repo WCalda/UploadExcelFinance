@@ -21,7 +21,7 @@
     <title>Rider</title>
 </head>
 <body style="background-color: #FFF;">
-    <div class="container-fluid text-center bg-primary text-light">
+    <div class="container-fluid text-center bg-primary text-light fixed-top">
         <div class="row">
             <div class="col">
             <h1>
@@ -63,8 +63,7 @@
         </form>
     </div> 
 
-
-    <div class="container justify-content-center">
+    <div class="container clckbl justify-content-center">
         <div class="row mb-2">
             <div class="col mt-2 text-center fw-bold">
                 Credit Date
@@ -90,7 +89,7 @@
             ?>
     </div>      
     
-    <div class="container justify-content-center">
+    <div class="container clckbl justify-content-center">
         <div class="row mb-2">
             <div class="col mt-2 text-center fw-bold">
                 Credit Date
@@ -148,7 +147,30 @@
             </script>
         </footer> 
     </div>
-       
+
+    <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataModalLabel">Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php 
+                
+                echo "Hallo";
+                
+                
+                ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>          
 
     <script src="App.js"></script>
 </body>
