@@ -100,8 +100,8 @@
                 }
                 ?>
                 <tr>
-                    <td class="text-right table-info fw-bold">Total Amount</td>
-                    <td class="text-center table-info">
+                    <td class="text-right fw-bold">Total Amount</td>
+                    <td class="text-center">
                     <?php 
 
                         $nresult = $conn->query($dsql);
