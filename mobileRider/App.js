@@ -1,4 +1,4 @@
-var container = document.querySelector(".container");
+var container = document.querySelector(".clckbl");
 var modal = document.getElementById("exampleModal");
 var modalDialog = document.querySelector('.modal-dialog');
 var exitModal = document.getElementById('exitmodal');

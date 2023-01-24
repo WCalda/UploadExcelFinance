@@ -64,8 +64,8 @@
     </div>
 
     
-    <div class="container clckbl justify-content-center">
-        <div class="container">
+    <div class="container justify-content-center">
+        <div class="container clckbl">
             <div class="row row-col-2 mb-2 table-">
                 <div class="col mt-2 text-center fw-bold">
                     Credit Date
@@ -93,7 +93,7 @@
     </div>   
     
     <div class="container clckbl justify-content-center">
-        <div class="container">
+        <div class="container clckbl">
             <?php
                 $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
                 $result = $conn->query($dsql);
