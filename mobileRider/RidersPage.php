@@ -16,7 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="styles.css">
-    <script src="App.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Rider</title>
 </head>
@@ -31,7 +30,6 @@
                     echo $RiderName;
                 ?>
             </h1>
-            
             </div>
         </div>
     </div>
@@ -64,7 +62,7 @@
     </div>
     
     <div class="container clckbl justify-content-center">
-        <div class="row mb-2">
+        <div class="row row-col-2 mb-2 table-">
             <div class="col mt-2 text-center fw-bold">
                 Credit Date
             </div>
@@ -76,7 +74,7 @@
                 if($datequery->num_rows > 0){
                     while($row = $datequery->fetch_assoc()){
                         echo
-                        "<div class=\"row\">
+                        "<div class=\"row table-group-divider\">
                             <div class=\"col text-center f-col\">" . $row["CreditDate"]. " </div>
                             <div class=\"col text-center s-col\">" . $row["AmountIssued"]. "</div>
                         </div>
@@ -104,7 +102,7 @@
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo 
-                    "<div class=\"row\">
+                    "<div class=\"row row-col-2 table-group-divider\">
                         <div class=\"col text-center f-col\">" . $row["CreditDate"]. " </div>
                         <div class=\"col text-center s-col\">" . $row["AmountIssued"]. "</div>
                     </div>
