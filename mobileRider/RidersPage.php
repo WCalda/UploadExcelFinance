@@ -64,45 +64,50 @@
     </div>
 
     
-    <div class="container clckbl justify-content-center">
-        <div class="row row-col-2 mb-2 table-">
-            <div class="col mt-2 text-center fw-bold">
-                Credit Date
+    <div class="container justify-content-center">
+        <div class="container clckbl">
+            <div class="row row-col-2 mb-2 table-">
+                <div class="col mt-2 text-center fw-bold">
+                    Credit Date
+                </div>
+                <div class="col mt-2 text-center fw-bold">
+                    Amount
+                </div>
             </div>
-            <div class="col mt-2 text-center fw-bold">
-                Amount
-            </div>
-        </div>
-            <?php
-                if($datequery->num_rows > 0){
-                    while($row = $datequery->fetch_assoc()){
-                        echo
-                        "<div class=\"row table-group-divider\">
-                            <div class=\"col text-center f-col\">" . $row["CreditDate"]. " </div>
-                            <div class=\"col text-center s-col\">" . $row["AmountIssued"]. "</div>
-                        </div>
-                        ";
+                <?php
+                    if($datequery->num_rows > 0){
+                        while($row = $datequery->fetch_assoc()){
+                            echo
+                            "<div class=\"row table-group-divider\">
+                                <div class=\"col text-center f-col\">" . $row["CreditDate"]. " </div>
+                                <div class=\"col text-center s-col\">" . $row["AmountIssued"]. "</div>
+                            </div>
+                            ";
+                        }
+                    } else{
+                        echo "<td class=\"col\" colspan=\"2\"> No Result Found </td>";
                     }
-                } else{
-                    echo "<td class=\"col\" colspan=\"2\"> No Result Found </td>";
-                }
-                } else {
-            ?>
+                    } else {
+                ?>
+        </div>
     </div>   
     
     <div class="container clckbl justify-content-center">
-        <div class="row mb-2">
-            <div class="col mt-2 text-center fw-bold">
-                Credit Date
+        <div class="container clckbl">
+            <?php
+                $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
+                $result = $conn->query($dsql);
+                if ($result->num_rows > 0) {
+            ?>
+            <div class="row mb-2">
+                <div class="col mt-2 text-center fw-bold">
+                    Credit Date
+                </div>
+                <div class="col mt-2 text-center fw-bold">
+                    Amount
+                </div>
             </div>
-            <div class="col mt-2 text-center fw-bold">
-                Amount
-            </div>
-        </div>
-        <?php
-            $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
-            $result = $conn->query($dsql);
-            if ($result->num_rows > 0) {
+            <?php
                 while($row = $result->fetch_assoc()) {
                     echo 
                     "<div class=\"row row-col-2 table-group-divider\">
@@ -115,12 +120,13 @@
                     die("Query failed: " . mysqli_error($conn));
                 }
             }
-        ?>
+            ?>
+        </div>
     </div>
 
     
     
-    <div class="container">
+    <div class="container justify-content-center">
         <div class="container">
             <div class="row mt-2">
                 <div class="col mt-2 fw-bold">
@@ -140,7 +146,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
             <button type="button" onclick="redirectToPage()" class="btn w-75 btn-primary">Logout</button>
             <script>
@@ -150,6 +158,7 @@
             </script>
         </footer> 
     </div>
+    
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable" role="document">
