@@ -15,11 +15,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="App.js" type="module" defer></script>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Rider</title>
 </head>
 <body style="background-color: #FFF;">
+
     <div class="container-fluid text-center bg-primary text-light">
         <div class="row">
             <div class="col">
@@ -60,6 +62,7 @@
             </div>
         </form>
     </div>
+
     
     <div class="container clckbl justify-content-center">
         <div class="row row-col-2 mb-2 table-">
@@ -115,27 +118,29 @@
         ?>
     </div>
 
-    <div class="container justify-content-center">
-        <div class="row mt-2">
-            <div class="col mt-2 fw-bold">
-                Total Amount
-            </div>
-            <div class="col mt-2 text-center">
-                <?php 
-
-                    $nresult = $conn->query($dsql);
-                    $ntotal = 0;
-                    while($row = $nresult->fetch_assoc()) {
-                        $ntotal += $row['AmountIssued'];
-                    }
-
-                    echo $ntotal;
-                ?>
-            </div>
-        </div>
-    </div>
+    
     
     <div class="container">
+        <div class="container">
+            <div class="row mt-2">
+                <div class="col mt-2 fw-bold">
+                    Total Amount
+                </div>
+                <div class="col mt-2 text-center">
+                    <?php 
+
+                        $nresult = $conn->query($dsql);
+                        $ntotal = 0;
+                        while($row = $nresult->fetch_assoc()) {
+                            $ntotal += $row['AmountIssued'];
+                        }
+
+                        echo $ntotal;
+                    ?>
+                </div>
+            </div>
+        </div>
+
         <footer class="text-wrap mb-2 fixed-bottom d-flex justify-content-center">
             <button type="button" onclick="redirectToPage()" class="btn w-75 btn-primary">Logout</button>
             <script>
@@ -146,7 +151,34 @@
         </footer> 
     </div>
 
-    <script src="App.js"></script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                    
+                    <?php
+                    
+                        echo $RiderName;
+                    
+                    ?>
+                    
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p>Credit Date: <span id="creditdate"></span></p>
+                    <p>Commision Amount: <span id="commission"></span></p>
+                    <p>Incentives: <span id="incentives"></span></p>
+                    <p>Total Amount: <span id="totalamount"></span></p>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" id="exitmodal" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 </body>
 </html>
 
