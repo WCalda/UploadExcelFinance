@@ -21,7 +21,7 @@
     <title>Rider</title>
 </head>
 <body style="background-color: #FFF;">
-    <div class="container-fluid text-center bg-primary text-light fixed-top">
+    <div class="container-fluid text-center bg-primary text-light">
         <div class="row">
             <div class="col">
             <h1>
