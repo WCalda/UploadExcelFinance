@@ -80,19 +80,21 @@
                             echo
                             "<div class=\"row table-group-divider\">
                                 <div class=\"col text-center f-col\">" . $row["CreditDate"]. " </div>
-                                <div class=\"col text-center s-col\">" . $row["AmountIssued"]. "</div>
+                                <div class=\"col text-center s-col\">" . $row["CommissionAmount"]. "</div>
+                                <span class=\"i-col\" hidden>". $row["Incentives"] ."</>
+                                <span class=\"g-col\" hidden>". $row["TotalAmount"] ."</>
                             </div>
                             ";
                         }
                     } else{
-                        echo "<td class=\"col\" colspan=\"2\"> No Result Found </td>";
+                        echo "<div class=\"col\" text-center> No Result Found </div>";
                     }
                     } else {
                 ?>
         </div>
     </div>   
     
-    <div class="container clckbl justify-content-center">
+    <div class="container justify-content-center">
         <div class="container clckbl">
             <?php
                 $dsql = "SELECT * FROM datarider WHERE RiderName = '$RiderName'";
@@ -112,7 +114,9 @@
                     echo 
                     "<div class=\"row row-col-2 table-group-divider\">
                         <div class=\"col text-center f-col\">" . $row["CreditDate"]. " </div>
-                        <div class=\"col text-center s-col\">" . $row["AmountIssued"]. "</div>
+                        <div class=\"col text-center s-col\">" . $row["CommissionAmount"]. "</div>
+                        <span class=\"i-col\" hidden>". $row["Incentives"] ."</>
+                        <span class=\"g-col\" hidden>". $row["TotalAmount"] ."</>
                     </div>
                     ";
                     }
@@ -126,7 +130,7 @@
 
     
     
-    <div class="container justify-content-center">
+    <div class="container justify-content-center ">
         <div class="container">
             <div class="row mt-2">
                 <div class="col mt-2 fw-bold">
@@ -138,7 +142,8 @@
                         $nresult = $conn->query($dsql);
                         $ntotal = 0;
                         while($row = $nresult->fetch_assoc()) {
-                            $ntotal += $row['AmountIssued'];
+                            $ntotal += $row['GrandTotal'];
+                            //Make Sure the Column Name in Database is Called GrandTotal
                         }
 
                         echo $ntotal;

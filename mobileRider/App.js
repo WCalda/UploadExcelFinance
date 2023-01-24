@@ -21,12 +21,20 @@ container.addEventListener("click", function(event) {
       row.classList.add("selected");
       var n1row = row.querySelector(".f-col");
       var n2row = row.querySelector(".s-col");
+      var n3row = row.querySelector(".i-col");
+      var n4row = row.querySelector(".g-col");
       var sn1row = n1row.textContent;
       var sn2row = n2row.textContent;
+      var sn3row = n3row.textContent;
+      var sn4row = n4row.textContent;
       var commi = document.getElementById("commission");
       var credi = document.getElementById("creditdate");
+      var incen = document.getElementById("incentives");
+      var grant = document.getElementById("totalamount");
       credi.textContent = sn1row;
       commi.textContent = sn2row;
+      incen.textContent = sn3row;
+      grant.textContent = sn4row;
   }
 });
 
