@@ -64,8 +64,9 @@
 					$ptname = $row[0];
 					$issuedate = $row[1];
 					$amount = $row[2];
+					$nxamout = $row[3];
 					
-					mysqli_query($conn, "INSERT INTO datarider VALUES('', '$ptname', '$issuedate', '$amount')");
+					mysqli_query($conn, "INSERT INTO datarider VALUES('', '$ptname', '$issuedate', '$amount', '$nxamout')");
 				}
 
 				echo

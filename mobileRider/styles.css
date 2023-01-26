@@ -1,3 +1,16 @@
 .selected{
-    background-color:aqua;
+    background-color: #80A4D0;
+}
+
+.blur {
+  filter: blur(10px);
+}
+
+
+#exampleModal {
+  filter: none;
+}
+
+body:not(#exampleModal){
+    filter: blur;
 }
