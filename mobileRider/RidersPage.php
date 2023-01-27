@@ -212,11 +212,10 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                    <!--<p>Credit Date: </p>-->
+                    <p>No. of GC: <span id="totalgc"></span></p>
                     <p>Commision Amount: ₱ <span id="commission"></span>.00</p>
                     <p>Incentives: ₱ <span id="incentives"></span>.00</p>
                     <p>Total Amount: ₱ <span id="totalamount"></span>.00</p>
-                    <p>No. of GC: <span id="totalgc"></span></p>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     <button type="button" class="btn btn-secondary" id="exitmodal" data-dismiss="modal">Close</button>

@@ -3,6 +3,8 @@ var modal = document.getElementById("exampleModal");
 var modalDialog = document.querySelector('.modal-dialog');
 var exitModal = document.getElementById('exitmodal');
 var ncontainer = document.getElementById('maincontainer');
+var screenHeight = window.screen.height;
+var scontainer = document.getElementById("conscrol");
 
 container.addEventListener("click", function(event) {
   if (event.target.classList.contains("f-col") || event.target.classList.contains("s-col")) {
@@ -12,13 +14,12 @@ container.addEventListener("click", function(event) {
       modal.classList.add("show");
       modal.classList.add("d-block");
       ncontainer.classList.toggle('blur');
-      document.querySelectorAll('.container').classList.add('blur');
       setTimeout(function(){
           modal.classList.remove("show");
           modal.classList.remove("d-block");
           ncontainer.classList.remove('blur');
           
-      }, 60000);
+      }, 45000);
 
     }
         
@@ -59,11 +60,14 @@ exitModal.addEventListener("click", ()=> {
 })
 
 
-var scontainer = document.getElementById("conscrol");
-scontainer.style.height = "400px";  // set fixed height
-scontainer.style.overflowY = "hidden";  // hide overflow initially
 
-  // check for overflow and make scrollable if necessary
+if(screenHeight >= 600){
+    scontainer.style.height = (screenHeight * 0.47) + "px";
+    scontainer.style.overflowY = "hidden";
+}
+
+// scontainer.style.height = "400px";
+
 if (scontainer.scrollHeight > scontainer.clientHeight) {
   scontainer.style.overflowY = "scroll";
 }
